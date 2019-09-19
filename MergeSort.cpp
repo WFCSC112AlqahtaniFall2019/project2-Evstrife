@@ -53,33 +53,35 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right){
 
 int main() {
     // unit test for merge
-    vector<int> testV1(5);
-    testV1 = {5,4,3,2,1};
+    vector<int> testV1(8);
+    testV1 = {1,3,5,7,2,4,6,8};
     vector<int> resultV1(5);
-    resultV1 = {1,2,3,4,5};
-    vector<int> tmp1(5);
+    resultV1 = {1,2,3,4,5,6,7,8};
+    vector<int> tmp1(8);
     cout << "Unit Test Start"<<endl;
     cout << "The expected answer is: ";     //print expected answer
     for(int i = 0; i < resultV1.size(); i++) {
         cout << resultV1.at(i) << '\t';
     }
     cout << endl;
-    cout << "The unit rest result is: ";        //print actual result
-    mergeSort(testV1,tmp1,0,testV1.size() - 1);
+    cout << "The unit test result is: ";        //print actual result
+    mergeSortedLists(testV1,tmp1,0,(testV1.size()-1)/2,testV1.size() - 1);
     for(int i = 0; i < testV1.size(); i++) {
         cout << testV1.at(i) << '\t';
     }
     cout <<endl;
-    if(testV1 == resultV1){             //check if the result match the expected answer
-        cout << "Unit test passed" << endl;
-    } else{
-        cout<< "Unit test failed" <<endl;
+    //if the sorted vector is correct
+    for(int i = 1; i < testV1.size(); i++) {
+        assert(testV1.at(i-1) <= testV1.at(i));
     }
+    cout<<"Unit test Passed!!!!"<<endl;
 
     // get input: first is random seed, second is vector length
     int seed, length;
-    cout << "Please enter seed and length:"<<endl;
-    cin >> seed >> length;
+    cout << "Please enter seed:"<<endl;
+    cin >> seed ;
+    cout << "Please enter length"<<endl;
+    cin >> length;
     srand(seed);
 
     vector<int> v(length);  // vector to be sorted
